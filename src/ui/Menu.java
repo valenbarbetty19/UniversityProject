@@ -32,8 +32,7 @@ public class Menu {
                     universityService.printTeachers();
                     break;
                 case 2:
-                    int courseOption = scanner.nextInt();
-                    universityService.printCourses(courseOption);
+                    universityService.printCourses();
                     break;
                 case 3:
                     createStudentMenu();
@@ -54,27 +53,36 @@ public class Menu {
     }
 
     private void createStudentMenu() {
-        System.out.print("Enter student ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("Enter student name: ");
         String name = scanner.nextLine();
         System.out.print("Enter student age: ");
         int age = scanner.nextInt();
-        System.out.print("Choose course option: ");
-        int courseOption = scanner.nextInt();
-        universityService.createStudent(id, name, age, courseOption);
+        universityService.createStudent(name, age);
     }
     private void createCourseMenu() {
-        scanner.nextLine();
         System.out.print("Enter course name: ");
         String name = scanner.nextLine();
         System.out.print("Enter classroom: ");
         String classroom = scanner.nextLine();
-        System.out.println("Choose teacher index:");
-        universityService.printTeachers();
-        int teacherOption = scanner.nextInt();
-        Teacher teacher = universityService.getUniversity().getTeachers().get(teacherOption);
+        System.out.println("Choose teacher:");
+        for (int i = 0; i < universityService.getUniversity().getTeachers().size(); i++) {
+            Teacher teacher = universityService.getUniversity().getTeachers().get(i);
+            System.out.println(i + ". " + teacher.getName());
+        }
+        int teacherOption;
+        while (true) {
+            System.out.print("Enter teacher option: ");
+            teacherOption = scanner.nextInt();
+            if (teacherOption >= 0 &&
+                    teacherOption < universityService.getUniversity().getTeachers().size()) {
+                break;
+            }
+            System.out.println("Please choose a valid option.");
+        }
+        Teacher teacher = universityService
+                .getUniversity()
+                .getTeachers()
+                .get(teacherOption);
         universityService.createNewCourse(name, classroom, teacher);
     }
 

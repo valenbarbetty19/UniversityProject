@@ -2,11 +2,11 @@ package model;
 
 public abstract class Teacher {
     private String name;
-    private double BaseSalary;
+    private double baseSalary;
 
     public Teacher(String name, double baseSalary) {
         this.name = name;
-        BaseSalary = baseSalary;
+        this.baseSalary = baseSalary;
     }
 
     public String getName() {
@@ -18,11 +18,11 @@ public abstract class Teacher {
     }
 
     public double getBaseSalary() {
-        return BaseSalary;
+        return baseSalary;
     }
 
     public void setBaseSalary(double baseSalary) {
-        BaseSalary = baseSalary;
+        this.baseSalary = baseSalary;
     }
 
     public abstract double calculateSalary();

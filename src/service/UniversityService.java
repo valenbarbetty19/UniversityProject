@@ -9,19 +9,20 @@ import java.util.Scanner;
 
 public class UniversityService {
     private University university;
+    Scanner scanner = new Scanner(System.in);
     public void initializeData(){
-        FullTimeTeacher fullTime1 = new FullTimeTeacher("Jungkook", 230);
-        FullTimeTeacher fullTime2 = new FullTimeTeacher("Taehyung", 354);
+        FullTimeTeacher fullTime1 = new FullTimeTeacher("Jungkook", 230, 5);
+        FullTimeTeacher fullTime2 = new FullTimeTeacher("Taehyung", 354, 3);
 
-        PartTimeTeacher partTime1 = new PartTimeTeacher("Jimin", 810);
-        PartTimeTeacher partTime2 = new PartTimeTeacher("Jin", 965);
+        PartTimeTeacher partTime1 = new PartTimeTeacher("Jimin", 810, 20);
+        PartTimeTeacher partTime2 = new PartTimeTeacher("Jin", 965, 23);
 
-        Student student1 = new Student(1, "Yoongi", 31);
-        Student student2 = new Student(2, "Hoseok", 29);
-        Student student3 = new Student(3, "Namjoon", 29);
-        Student student4 = new Student(4, "Valentina", 26);
-        Student student5 = new Student(5, "Dustin", 5);
-        Student student6 = new Student(6, "EunWoo", 23);
+        Student student1 = new Student("Yoongi", 31);
+        Student student2 = new Student("Hoseok", 29);
+        Student student3 = new Student("Namjoon", 29);
+        Student student4 = new Student("Valentina", 26);
+        Student student5 = new Student("Dustin", 5);
+        Student student6 = new Student("EunWoo", 23);
 
 
 
@@ -67,81 +68,85 @@ public class UniversityService {
     }
 
     public void printTeachers(){
+        System.out.println("TEACHERS DATA FROM THE UNIVERSITY: \n");
+        int i = 0;
         for(Teacher teacher: university.getTeachers()){
-            System.out.println("TEACHERS DATA FROM THE UNIVERSITY: \n");
+
             if(teacher instanceof FullTimeTeacher){
-                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Full Time");
+                System.out.println(i + ". Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Full Time");
+                i++;
             } else {
-                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Part Time");
+                System.out.println(i + ". Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Part Time");
+                i++;
             }
         }
     }
 
-    public void printCourses(int option){
-        int i = 0;
+    public void printCourses(){
+        System.out.println("UNIVERSITY COURSES: \n");
         //Imprimo los cursos
-        for(i = 0; i <= university.getCourses().size() - 1; i++){
-            System.out.println("UNIVERSITY COURSES, PLEASE SELECT AN OPTION TO SEE A COURSE IN DETAIL\n");
+        for(int i = 0; i <= university.getCourses().size() - 1; i++){
             System.out.println(i + ". " + university.getCourses().get(i).getName());
         }
-
-        if(option <= university.getCourses().size()){
+        System.out.println("Please choose an option to see a course in detail: ");
+        int option = scanner.nextInt();
+        if(option >= 0 && option < university.getCourses().size()){
             List<Student> studentsCourse = university.getCourses().get(option).getStudents();
-            List<String> studentsNames = new ArrayList<>();
 
             System.out.println("Name: " + university.getCourses().get(option).getName() +
-                    "\n Classroom: " + university.getCourses().get(option).getName() +
-                    "\n Students: ");
-            for (Student s: studentsCourse){
-                System.out.println(studentsNames.add(s.getName()));
+                    "\nClassroom: " + university.getCourses().get(option).getClassroom() +
+                    "\nStudents: ");
+            for(int i = 0; i <= studentsCourse.size() - 1; i++){
+                System.out.println("  - " + studentsCourse.get(i).getName());
             }
-            System.out.println(university.getCourses().get(option).getTeacher().getName());
+
+            System.out.println("Teacher: " + university.getCourses().get(option).getTeacher().getName());
         } else {
             System.out.println("Please choose a valid option");
         }
 
     }
 
-    public void createStudent(int id, String name, int age, int courseOption){
-        Student student = new Student(id, name, age);
-        for(int i = 0; i <= university.getCourses().size() - 1; i++){
-            System.out.println("UNIVERSITY COURSES, PLEASE SELECT A COURSE TO ADD THE STUDENT \n");
-            System.out.println(i + ". " + university.getCourses().get(i).getName());
-        }
-        if(university.getCourses().size() <= courseOption){
-            university.getCourses().get(courseOption).addStudent(student);
-        } else {
-            System.out.println("Please choose a valid option");
+    public void createStudent(String name, int age) {
+        Student student = new Student(name, age);
+        int courseOption = -1;
+        while (true) {
+            System.out.println("Choose course option:");
+            for (int i = 0; i < university.getCourses().size(); i++) {
+                System.out.println(i + ". " + university.getCourses().get(i).getName());
+            }
+            courseOption = scanner.nextInt();
+            if (courseOption >= 0 && courseOption < university.getCourses().size()) {
+                Course course = university.getCourses().get(courseOption);
+                course.addStudent(student);
+                university.addStudent(student);
+                System.out.println("Student added successfully to the course: " + course.getName());
+                break;
+            } else {
+                System.out.println("Invalid option. Please choose again.");
+            }
         }
     }
 
     public void createNewCourse(String name, String classroom, Teacher teacher) {
-
-        Scanner scanner = new Scanner(System.in);
         Course course = new Course(name, classroom, teacher);
         System.out.println("Choose the students you want to add to the new course: ");
         for (int i = 0; i < university.getStudents().size(); i++) {
             System.out.println(i + ". " + university.getStudents().get(i).getName());
         }
 
-        System.out.println("Enter the number of students to add (type -1 to finish):");
+        System.out.println("Enter the number of students to add, type -1 to finish:");
 
         int option;
         while (true) {
-
             option = scanner.nextInt();
-
             if (option == -1) {
                 break;
             }
-
             if (option >= 0 && option < university.getStudents().size()) {
-
                 Student student = university.getStudents().get(option);
                 course.addStudent(student);
-
                 System.out.println(student.getName() + " added to the course.");
-
             } else {
                 System.out.println("Invalid option. Try again.");
             }
@@ -149,6 +154,7 @@ public class UniversityService {
         university.addCourse(course);
         System.out.println("Course created successfully!");
     }
+
     public void listClassesByStudentId(int studentId) {
         boolean found = false;
         for (Course course : university.getCourses()) {
