@@ -8,7 +8,7 @@ public class University {
     private List<Student> students;
     private List<Course> courses;
 
-    public University(List<Teacher> teachers, List<Student> students, List<Course> courses) {
+    public University() {
         this.teachers = new ArrayList<>();
         this.students = new ArrayList<>();
         this.courses = new ArrayList<>();

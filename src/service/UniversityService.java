@@ -24,15 +24,11 @@ public class UniversityService {
         Student student6 = new Student(6, "EunWoo", 23);
 
 
-        ArrayList<Student> course1Students = new ArrayList<>();
-        ArrayList<Student> course2Students = new ArrayList<>();
-        ArrayList<Student> course3Students = new ArrayList<>();
-        ArrayList<Student> course4Students = new ArrayList<>();
 
-        Course course1 = new Course("Art", "A101", course1Students, fullTime1);
-        Course course2 = new Course("Music", "B102", course2Students, fullTime2);
-        Course course3 = new Course("Math", "C103", course3Students, partTime1);
-        Course course4 = new Course("French", "D104", course4Students, partTime2);
+        Course course1 = new Course("Art", "A101", fullTime1);
+        Course course2 = new Course("Music", "B102", fullTime2);
+        Course course3 = new Course("Math", "C103", partTime1);
+        Course course4 = new Course("French", "D104", partTime2);
 
         course1.addStudent(student1);
         course1.addStudent(student2);

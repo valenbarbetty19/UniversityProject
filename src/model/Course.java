@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
@@ -8,10 +9,10 @@ public class Course {
     private List<Student> students;
     private Teacher teacher;
 
-    public Course(String name, String classroom, List<Student> students, Teacher teacher) {
+    public Course(String name, String classroom, Teacher teacher) {
         this.name = name;
         this.classroom = classroom;
-        this.students = students;
+        this.students = new ArrayList<>();
         this.teacher = teacher;
     }
 
