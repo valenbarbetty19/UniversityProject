@@ -32,8 +32,7 @@ public class Menu {
                     universityService.printTeachers();
                     break;
                 case 2:
-                    int courseOption = scanner.nextInt();
-                    universityService.printCourses(courseOption);
+                    universityService.printCourses();
                     break;
                 case 3:
                     createStudentMenu();
@@ -61,17 +60,14 @@ public class Menu {
         String name = scanner.nextLine();
         System.out.print("Enter student age: ");
         int age = scanner.nextInt();
-        System.out.print("Choose course option: ");
-        int courseOption = scanner.nextInt();
-        universityService.createStudent(id, name, age, courseOption);
+        universityService.createStudent(id, name, age);
     }
     private void createCourseMenu() {
-        scanner.nextLine();
         System.out.print("Enter course name: ");
         String name = scanner.nextLine();
         System.out.print("Enter classroom: ");
         String classroom = scanner.nextLine();
-        System.out.println("Choose teacher index:");
+        System.out.println("Choose teacher index: ");
         universityService.printTeachers();
         int teacherOption = scanner.nextInt();
         Teacher teacher = universityService.getUniversity().getTeachers().get(teacherOption);
