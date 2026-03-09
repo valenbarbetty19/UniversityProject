@@ -53,14 +53,11 @@ public class Menu {
     }
 
     private void createStudentMenu() {
-        System.out.print("Enter student ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
         System.out.print("Enter student name: ");
         String name = scanner.nextLine();
         System.out.print("Enter student age: ");
         int age = scanner.nextInt();
-        universityService.createStudent(id, name, age);
+        universityService.createStudent(name, age);
     }
     private void createCourseMenu() {
         System.out.print("Enter course name: ");

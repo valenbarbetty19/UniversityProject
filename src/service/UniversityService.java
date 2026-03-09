@@ -17,12 +17,12 @@ public class UniversityService {
         PartTimeTeacher partTime1 = new PartTimeTeacher("Jimin", 810, 20);
         PartTimeTeacher partTime2 = new PartTimeTeacher("Jin", 965, 23);
 
-        Student student1 = new Student(1, "Yoongi", 31);
-        Student student2 = new Student(2, "Hoseok", 29);
-        Student student3 = new Student(3, "Namjoon", 29);
-        Student student4 = new Student(4, "Valentina", 26);
-        Student student5 = new Student(5, "Dustin", 5);
-        Student student6 = new Student(6, "EunWoo", 23);
+        Student student1 = new Student("Yoongi", 31);
+        Student student2 = new Student("Hoseok", 29);
+        Student student3 = new Student("Namjoon", 29);
+        Student student4 = new Student("Valentina", 26);
+        Student student5 = new Student("Dustin", 5);
+        Student student6 = new Student("EunWoo", 23);
 
 
 
@@ -90,7 +90,7 @@ public class UniversityService {
         }
         System.out.println("Please choose an option to see a course in detail: ");
         int option = scanner.nextInt();
-        if(option <= university.getCourses().size()){
+        if(option >= 0 && option < university.getCourses().size()){
             List<Student> studentsCourse = university.getCourses().get(option).getStudents();
 
             System.out.println("Name: " + university.getCourses().get(option).getName() +
@@ -107,8 +107,8 @@ public class UniversityService {
 
     }
 
-    public void createStudent(int id, String name, int age) {
-        Student student = new Student(id, name, age);
+    public void createStudent(String name, int age) {
+        Student student = new Student(name, age);
         int courseOption = -1;
         while (true) {
             System.out.println("Choose course option:");
