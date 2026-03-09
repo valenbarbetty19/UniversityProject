@@ -65,6 +65,13 @@ public class UniversityService {
     }
 
     public void printTeachers(){
-
+        for(Teacher teacher: university.getTeachers()){
+            System.out.println("TEACHERS DATA FROM THE UNIVERSITY: \n");
+            if(teacher instanceof FullTimeTeacher){
+                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Full Time");
+            } else {
+                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Part Time");
+            }
+        }
     }
 }
