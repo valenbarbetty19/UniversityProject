@@ -5,6 +5,7 @@ import model.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class UniversityService {
     private University university;
@@ -99,5 +100,67 @@ public class UniversityService {
             System.out.println("Please choose a valid option");
         }
 
+    }
+
+    public void createStudent(int id, String name, int age, int courseOption){
+        Student student = new Student(id, name, age);
+        for(int i = 0; i <= university.getCourses().size() - 1; i++){
+            System.out.println("UNIVERSITY COURSES, PLEASE SELECT A COURSE TO ADD THE STUDENT \n");
+            System.out.println(i + ". " + university.getCourses().get(i).getName());
+        }
+        if(university.getCourses().size() <= courseOption){
+            university.getCourses().get(courseOption).addStudent(student);
+        } else {
+            System.out.println("Please choose a valid option");
+        }
+    }
+
+    public void createNewCourse(String name, String classroom, Teacher teacher) {
+
+        Scanner scanner = new Scanner(System.in);
+        Course course = new Course(name, classroom, teacher);
+        System.out.println("Choose the students you want to add to the new course: ");
+        for (int i = 0; i < university.getStudents().size(); i++) {
+            System.out.println(i + ". " + university.getStudents().get(i).getName());
+        }
+
+        System.out.println("Enter the number of students to add (type -1 to finish):");
+
+        int option;
+        while (true) {
+
+            option = scanner.nextInt();
+
+            if (option == -1) {
+                break;
+            }
+
+            if (option >= 0 && option < university.getStudents().size()) {
+
+                Student student = university.getStudents().get(option);
+                course.addStudent(student);
+
+                System.out.println(student.getName() + " added to the course.");
+
+            } else {
+                System.out.println("Invalid option. Try again.");
+            }
+        }
+        university.addCourse(course);
+        System.out.println("Course created successfully!");
+    }
+    public void listClassesByStudentId(int studentId) {
+        boolean found = false;
+        for (Course course : university.getCourses()) {
+            for (Student student : course.getStudents()) {
+                if (student.getId() == studentId) {
+                    System.out.println("Student is in: " + course.getName() + " course");
+                    found = true;
+                }
+            }
+        }
+        if (!found) {
+            System.out.println("The student is not in any course.");
+        }
     }
 }
