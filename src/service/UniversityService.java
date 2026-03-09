@@ -149,4 +149,18 @@ public class UniversityService {
         university.addCourse(course);
         System.out.println("Course created successfully!");
     }
+    public void listClassesByStudentId(int studentId) {
+        boolean found = false;
+        for (Course course : university.getCourses()) {
+            for (Student student : course.getStudents()) {
+                if (student.getId() == studentId) {
+                    System.out.println("Student is in: " + course.getName() + " course");
+                    found = true;
+                }
+            }
+        }
+        if (!found) {
+            System.out.println("The student is not in any course.");
+        }
+    }
 }
