@@ -23,34 +23,38 @@ public class UniversityService {
         Student student5 = new Student(5, "Dustin", 5);
         Student student6 = new Student(6, "EunWoo", 23);
 
+
         ArrayList<Student> course1Students = new ArrayList<>();
         ArrayList<Student> course2Students = new ArrayList<>();
         ArrayList<Student> course3Students = new ArrayList<>();
         ArrayList<Student> course4Students = new ArrayList<>();
-
-        course1Students.add(student1);
-        course1Students.add(student2);
-        course1Students.add(student3);
-
-        course2Students.add(student4);
-        course2Students.add(student5);
-        course2Students.add(student6);
-
-        course3Students.add(student2);
-        course3Students.add(student4);
-        course3Students.add(student6);
-
-        course4Students.add(student1);
-        course4Students.add(student3);
-        course4Students.add(student5);
-
 
         Course course1 = new Course("Art", "A101", course1Students, fullTime1);
         Course course2 = new Course("Music", "B102", course2Students, fullTime2);
         Course course3 = new Course("Math", "C103", course3Students, partTime1);
         Course course4 = new Course("French", "D104", course4Students, partTime2);
 
+        course1.addStudent(student1);
+        course1.addStudent(student2);
+        course1.addStudent(student3);
 
+        course2.addStudent(student4);
+        course2.addStudent(student5);
+        course2.addStudent(student6);
+
+        course3.addStudent(student2);
+        course3.addStudent(student4);
+        course3.addStudent(student6);
+
+        course4.addStudent(student1);
+        course4.addStudent(student3);
+        course4.addStudent(student5);
+
+
+
+    }
+
+    public void printTeachers(){
 
     }
 }
