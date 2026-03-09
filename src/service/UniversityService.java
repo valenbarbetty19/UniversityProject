@@ -100,4 +100,18 @@ public class UniversityService {
         }
 
     }
+
+    public void createStudent(int id, String name, int age, int courseOption){
+        Student student = new Student(id, name, age);
+        for(int i = 0; i <= university.getCourses().size() - 1; i++){
+            System.out.println("UNIVERSITY COURSES, PLEASE SELECT A COURSE TO ADD THE STUDENT \n");
+            System.out.println(i + ". " + university.getCourses().get(i).getName());
+        }
+        if(university.getCourses().size() <= courseOption){
+            university.getCourses().get(courseOption).addStudent(student);
+        } else {
+            System.out.println("Please choose a valid option");
+        }
+
+    }
 }
