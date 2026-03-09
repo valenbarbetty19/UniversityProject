@@ -1,14 +1,13 @@
 package service;
 
-import model.Course;
-import model.FullTimeTeacher;
-import model.PartTimeTeacher;
-import model.Student;
+import model.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UniversityService {
+    private University university;
     public void initializeData(){
         FullTimeTeacher fullTime1 = new FullTimeTeacher("Jungkook", 230);
         FullTimeTeacher fullTime2 = new FullTimeTeacher("Taehyung", 354);
@@ -46,11 +45,59 @@ public class UniversityService {
         course4.addStudent(student3);
         course4.addStudent(student5);
 
+        university = new University();
+        university.addStudent(student1);
+        university.addStudent(student2);
+        university.addStudent(student3);
+        university.addStudent(student4);
+        university.addStudent(student5);
+        university.addStudent(student6);
 
+        university.addTeacher(fullTime1);
+        university.addTeacher(fullTime2);
+        university.addTeacher(partTime1);
+        university.addTeacher(partTime2);
+
+        university.addCourse(course1);
+        university.addCourse(course2);
+        university.addCourse(course3);
+        university.addCourse(course4);
 
     }
 
     public void printTeachers(){
+        for(Teacher teacher: university.getTeachers()){
+            System.out.println("TEACHERS DATA FROM THE UNIVERSITY: \n");
+            if(teacher instanceof FullTimeTeacher){
+                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Full Time");
+            } else {
+                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Part Time");
+            }
+        }
+    }
+
+    public void printCourses(int option){
+        int i = 0;
+        //Imprimo los cursos
+        for(i = 0; i <= university.getCourses().size() - 1; i++){
+            System.out.println("UNIVERSITY COURSES, PLEASE SELECT AN OPTION TO SEE A COURSE IN DETAIL\n");
+            System.out.println(i + ". " + university.getCourses().get(i).getName());
+        }
+
+        if(option <= university.getCourses().size()){
+            List<Student> studentsCourse = university.getCourses().get(option).getStudents();
+            List<String> studentsNames = new ArrayList<>();
+
+            System.out.println("Name: " + university.getCourses().get(option).getName() +
+                    "\n Classroom: " + university.getCourses().get(option).getName() +
+                    "\n Students: ");
+            for (Student s: studentsCourse){
+                System.out.println(studentsNames.add(s.getName()));
+            }
+            System.out.println(university.getCourses().get(option).getTeacher().getName());
+        } else {
+            System.out.println("Please choose a valid option");
+        }
 
     }
 }
