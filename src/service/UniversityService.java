@@ -1,14 +1,12 @@
 package service;
 
-import model.Course;
-import model.FullTimeTeacher;
-import model.PartTimeTeacher;
-import model.Student;
+import model.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UniversityService {
+    private University university;
     public void initializeData(){
         FullTimeTeacher fullTime1 = new FullTimeTeacher("Jungkook", 230);
         FullTimeTeacher fullTime2 = new FullTimeTeacher("Taehyung", 354);
@@ -46,7 +44,23 @@ public class UniversityService {
         course4.addStudent(student3);
         course4.addStudent(student5);
 
+        university = new University();
+        university.addStudent(student1);
+        university.addStudent(student2);
+        university.addStudent(student3);
+        university.addStudent(student4);
+        university.addStudent(student5);
+        university.addStudent(student6);
 
+        university.addTeacher(fullTime1);
+        university.addTeacher(fullTime2);
+        university.addTeacher(partTime1);
+        university.addTeacher(partTime2);
+
+        university.addCourse(course1);
+        university.addCourse(course2);
+        university.addCourse(course3);
+        university.addCourse(course4);
 
     }
 
