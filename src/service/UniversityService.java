@@ -69,12 +69,15 @@ public class UniversityService {
 
     public void printTeachers(){
         System.out.println("TEACHERS DATA FROM THE UNIVERSITY: \n");
+        int i = 0;
         for(Teacher teacher: university.getTeachers()){
 
             if(teacher instanceof FullTimeTeacher){
-                System.out.println("Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Full Time");
+                System.out.println(i + ". Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Full Time");
+                i++;
             } else {
-                System.out.println("Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Part Time");
+                System.out.println(i + ". Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Part Time");
+                i++;
             }
         }
     }
@@ -132,24 +135,18 @@ public class UniversityService {
             System.out.println(i + ". " + university.getStudents().get(i).getName());
         }
 
-        System.out.println("Enter the number of students to add (type -1 to finish):");
+        System.out.println("Enter the number of students to add, type -1 to finish:");
 
         int option;
         while (true) {
-
             option = scanner.nextInt();
-
             if (option == -1) {
                 break;
             }
-
             if (option >= 0 && option < university.getStudents().size()) {
-
                 Student student = university.getStudents().get(option);
                 course.addStudent(student);
-
                 System.out.println(student.getName() + " added to the course.");
-
             } else {
                 System.out.println("Invalid option. Try again.");
             }
@@ -157,6 +154,7 @@ public class UniversityService {
         university.addCourse(course);
         System.out.println("Course created successfully!");
     }
+
     public void listClassesByStudentId(int studentId) {
         boolean found = false;
         for (Course course : university.getCourses()) {
