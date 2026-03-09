@@ -1,4 +1,4 @@
-# University System (Java)
+# University System
 
 This project is a Java application that helps to manage tasks from an university  
 The system allows users to manage teachers, students, and courses through a console menu
