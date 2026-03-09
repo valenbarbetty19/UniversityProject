@@ -163,4 +163,8 @@ public class UniversityService {
             System.out.println("The student is not in any course.");
         }
     }
+
+    public University getUniversity() {
+        return university;
+    }
 }
