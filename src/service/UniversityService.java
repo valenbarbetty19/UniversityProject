@@ -11,11 +11,11 @@ public class UniversityService {
     private University university;
     Scanner scanner = new Scanner(System.in);
     public void initializeData(){
-        FullTimeTeacher fullTime1 = new FullTimeTeacher("Jungkook", 230);
-        FullTimeTeacher fullTime2 = new FullTimeTeacher("Taehyung", 354);
+        FullTimeTeacher fullTime1 = new FullTimeTeacher("Jungkook", 230, 5);
+        FullTimeTeacher fullTime2 = new FullTimeTeacher("Taehyung", 354, 3);
 
-        PartTimeTeacher partTime1 = new PartTimeTeacher("Jimin", 810);
-        PartTimeTeacher partTime2 = new PartTimeTeacher("Jin", 965);
+        PartTimeTeacher partTime1 = new PartTimeTeacher("Jimin", 810, 20);
+        PartTimeTeacher partTime2 = new PartTimeTeacher("Jin", 965, 23);
 
         Student student1 = new Student(1, "Yoongi", 31);
         Student student2 = new Student(2, "Hoseok", 29);
@@ -72,9 +72,9 @@ public class UniversityService {
         for(Teacher teacher: university.getTeachers()){
 
             if(teacher instanceof FullTimeTeacher){
-                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Full Time");
+                System.out.println("Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Full Time");
             } else {
-                System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Part Time");
+                System.out.println("Name: " + teacher.getName() + "\n  Base Salary: " + teacher.getBaseSalary() + "\n  Total salary:" + teacher.calculateSalary() + "\n  Type of contract: Part Time");
             }
         }
     }
