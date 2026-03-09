@@ -4,6 +4,7 @@ import model.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UniversityService {
     private University university;
@@ -73,5 +74,30 @@ public class UniversityService {
                 System.out.println("Name: " + teacher.getName() + " Base Salary: " + teacher.getBaseSalary() + " Total salary: " + teacher.calculateSalary() + " Type of contract: Part Time");
             }
         }
+    }
+
+    public void printCourses(int option){
+        int i = 0;
+        //Imprimo los cursos
+        for(i = 0; i <= university.getCourses().size() - 1; i++){
+            System.out.println("UNIVERSITY COURSES, PLEASE SELECT AN OPTION TO SEE A COURSE IN DETAIL\n");
+            System.out.println(i + ". " + university.getCourses().get(i).getName());
+        }
+
+        if(option <= university.getCourses().size()){
+            List<Student> studentsCourse = university.getCourses().get(option).getStudents();
+            List<String> studentsNames = new ArrayList<>();
+
+            System.out.println("Name: " + university.getCourses().get(option).getName() +
+                    "\n Classroom: " + university.getCourses().get(option).getName() +
+                    "\n Students: ");
+            for (Student s: studentsCourse){
+                System.out.println(studentsNames.add(s.getName()));
+            }
+            System.out.println(university.getCourses().get(option).getTeacher().getName());
+        } else {
+            System.out.println("Please choose a valid option");
+        }
+
     }
 }
